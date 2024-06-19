@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron text-center">
+    <h1>Create Your Newsletter</h1>
+    <p>Generate newsletters with AI-powered tools</p>
+    <form action="{{ url_for('generate_newsletter') }}" method="post">
+        <button type="submit" class="btn btn-primary">Generate Newsletter</button>
+    </form>
+</div>
+{% endblock %}
+

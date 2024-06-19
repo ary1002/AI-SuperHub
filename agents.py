@@ -1,8 +1,18 @@
 from crewai import Agent
 from tools.search_tools import SearchTools
-
-
+from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
+import os
 class AINewsLetterAgents():
+    def __init__(self):
+        self.llm1=ChatGoogleGenerativeAI(model="gemini-1.5-flash",
+                           verbose=True,
+                           temperature=0.5,
+                           google_api_key=os.getenv("GOOGLE_API_KEY_A"))
+        self.llm2=ChatGoogleGenerativeAI(model="gemini-1.5-flash",
+                           verbose=True,
+                           temperature=0.5,
+                           google_api_key=os.getenv("GOOGLE_API_KEY_B"))
     def editor_agent(self):
         return Agent(
             role='Editor',
@@ -11,7 +21,8 @@ class AINewsLetterAgents():
             not only informs but also engages and inspires the readers. """,
             allow_delegation=True,
             verbose=True,
-            max_iter=15
+            llm=self.llm1,
+            max_iter=3,
         )
 
     def news_fetcher_agent(self):
@@ -22,7 +33,9 @@ class AINewsLetterAgents():
             in the world of AI, ensuring that our readers are always in the know.""",
             tools=[SearchTools.search_internet],
             verbose=True,
+            llm=self.llm1,
             allow_delegation=True,
+            max_iter=3,
         )
 
     def news_analyzer_agent(self):
@@ -33,7 +46,9 @@ class AINewsLetterAgents():
             analyses of AI news stories, making them accessible and engaging for our audience.""",
             tools=[SearchTools.search_internet],
             verbose=True,
+            llm=self.llm2,
             allow_delegation=True,
+            max_iter=3,
         )
 
     def newsletter_compiler_agent(self):
@@ -44,4 +59,6 @@ class AINewsLetterAgents():
             ensuring a coherent and visually appealing presentation that captivates our readers. Make sure to follow
             newsletter format guidelines and maintain consistency throughout.""",
             verbose=True,
+            llm=self.llm2,
+            max_iter=3,
         )

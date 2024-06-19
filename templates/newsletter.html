@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="newsletter">
+    <h2>Today's Newsletter</h2>
+    <div class="content">
+        {{ content|safe }}
+    </div>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Back to Home</a>
+</div>
+{% endblock %}
+

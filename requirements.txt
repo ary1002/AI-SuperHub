@@ -1,0 +1,10 @@
+crewai
+duckduckgo-search
+python-dotenv
+requests
+beautifulsoup4
+langchain_openai
+flask
+flask-caching
+markdown
+langchain-google-genai

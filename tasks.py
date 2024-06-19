@@ -22,12 +22,12 @@ class AINewsLetterTasks():
 
     def analyze_news_task(self, agent, context):
         return Task(
-            description='Analyze each news story and ensure there are at least 5 well-formatted articles',
+            description='Analyze each news story and ensure there are at least 10 well-formatted articles',
             agent=agent,
             async_execution=True,
             context=context,
             expected_output="""A markdown-formatted analysis for each news story, including a rundown, detailed bullet points, 
-                and a "Why it matters" section. There should be at least 5 articles, each following the proper format.
+                and a "Why it matters" section. There should be at least 10 articles, each following the proper format.
                 Example Output: 
                 '## AI takes spotlight in Super Bowl commercials\n\n
                 **The Rundown:
@@ -44,10 +44,11 @@ class AINewsLetterTasks():
             agent=agent,
             context=context,
             expected_output="""A complete newsletter in markdown format, with a consistent style and layout.
+                Include the links to the articles and the dates of publishing.
                 Example Output: 
                 '# Top stories in AI today:\\n\\n
-                - AI takes spotlight in Super Bowl commercials\\n
-                - Altman seeks TRILLIONS for global AI chip initiative\\n\\n
+                - AI takes spotlight in Super Bowl commercials - {link,date}\\n
+                - Altman seeks TRILLIONS for global AI chip initiative - {link,date}\\n\\n
 
                 ## AI takes spotlight in Super Bowl commercials\\n\\n
                 **The Rundown:** AI made a splash in this year\'s Super Bowl commercials...\\n\\n
